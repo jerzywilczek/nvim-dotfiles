@@ -531,7 +531,7 @@ end, 0)
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -574,6 +574,14 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 
   nmap("<leader>df", vim.lsp.buf.format, "[D]ocument [F]ormat")
+
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint.enable(bufnr, true)
+  end
+
+  vim.keymap.set('n', '<leader>xt', function()
+    require("trouble").toggle("workspace_diagnostics")
+  end, { buffer = bufnr, desc = "Toggle [T]rouble" })
 end
 
 -- document existing key chains
