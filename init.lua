@@ -395,6 +395,8 @@ require('telescope').setup {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ['<C-c>'] = false,
+        ['<esc>'] = require('telescope.actions').close,
       },
     },
   },
