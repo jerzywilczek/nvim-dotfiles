@@ -398,6 +398,9 @@ require('telescope').setup {
         ['<C-c>'] = false,
         ['<esc>'] = require('telescope.actions').close,
       },
+      n = {
+        ['<C-c>'] = require('telescope.actions').close,
+      }
     },
   },
 }
