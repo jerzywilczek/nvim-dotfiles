@@ -30,13 +30,12 @@ vim.o.scrolloff = 8
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
--- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Relative line numbers
 vim.o.relativenumber = true
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
+-- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -44,5 +43,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
   group = highlight_group,
   pattern = '*',
+})
+
+local remove_trailing_whitespace_group = vim.api.nvim_create_augroup('RmTrWhitespace', {})
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = remove_trailing_whitespace_group,
+  pattern = '*',
+  command = [[%s/\s\+$//e]],
 })
 
