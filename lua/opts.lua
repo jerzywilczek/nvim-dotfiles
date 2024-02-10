@@ -35,6 +35,9 @@ vim.o.termguicolors = true
 -- Relative line numbers
 vim.o.relativenumber = true
 
+-- Use nushell by default
+vim.o.shell = 'nu'
+
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
