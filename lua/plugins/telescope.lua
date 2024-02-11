@@ -15,8 +15,11 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
+
+    'nvim-telescope/telescope-file-browser.nvim',
+    'nvim-telescope/telescope-ui-select.nvim',
   },
-  config = function(_plugin, _opts)
+  config = function()
     require('telescope').setup({
       defaults = {
         mappings = {
@@ -31,10 +34,19 @@ return {
           }
         },
       },
+
+      extensions = {
+        ["ui-select"] = {
+          require('telescope.themes').get_dropdown()
+        }
+      }
     })
 
     -- Enable telescope fzf native, if installed
     pcall(require('telescope').load_extension, 'fzf')
+
+    require('telescope').load_extension('file_browser')
+    require('telescope').load_extension('ui-select')
 
     -- Telescope live_grep in git root
     -- Function to find the git root directory based on the current buffer's path
@@ -101,5 +113,6 @@ return {
     vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
     vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+    vim.keymap.set('n', '<leader>f', require('telescope').extensions.file_browser.file_browser, { desc = '[F]ile browser' })
   end
 }
