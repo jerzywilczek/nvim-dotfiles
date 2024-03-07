@@ -11,7 +11,7 @@ return {
     'hrsh7th/cmp-path',
 
     -- Adds a number of user-friendly snippets
-    'rafamadriz/friendly-snippets',
+    -- 'rafamadriz/friendly-snippets',
   },
   config = function()
     local cmp = require('cmp')
@@ -33,27 +33,16 @@ return {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-y>'] = cmp.mapping.confirm { select = true },
         ['<C-Space>'] = cmp.mapping.complete {},
-        ['<CR>'] = cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        },
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_locally_jumpable() then
+        ['<C-l>'] = cmp.mapping(function()
+          if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
-          else
-            fallback()
           end
         end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.locally_jumpable(-1) then
+        ['<C-h>'] = cmp.mapping(function()
+          if luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
-          else
-            fallback()
           end
         end, { 'i', 's' }),
       }),
