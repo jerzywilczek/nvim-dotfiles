@@ -17,6 +17,13 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+-- Make unwanted invisible characters visible
+vim.o.list = true
+vim.o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Preview substitutions in a separate buffer
+vim.o.inccommand = 'split'
+
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
