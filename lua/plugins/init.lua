@@ -26,6 +26,4 @@ return {
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
-  "github/copilot.vim",
 }
