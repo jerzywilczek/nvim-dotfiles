@@ -45,6 +45,9 @@ vim.opt.relativenumber = true
 -- Use nushell by default
 vim.opt.shell = 'nu'
 
+-- Don't use swapfiles
+vim.opt.swapfile = false
+
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
