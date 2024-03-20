@@ -40,9 +40,7 @@ return {
           require('telescope.themes').get_dropdown()
         },
 
-        file_browser = {
-          hijack_netrw = true,
-        }
+        file_browser = {},
       }
     })
 
