@@ -79,6 +79,9 @@ local servers = {
   }
 }
 
+-- This is really weird, but somehow necessary
+vim.g.zig_fmt_parse_errors = 0
+
 -- Setup neovim lua configuration
 require('neodev').setup()
 
